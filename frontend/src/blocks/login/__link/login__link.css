@@ -1,0 +1,6 @@
+.login__link {
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.2s linear;
+    margin-left: 5px;
+}

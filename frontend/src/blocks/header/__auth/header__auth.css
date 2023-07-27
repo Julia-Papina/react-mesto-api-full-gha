@@ -1,0 +1,12 @@
+.header__auth {
+    align-items: center;
+    display: flex;
+    grid-gap: 10px;
+
+}
+
+@media screen and (max-width: 475px) {
+    .header__auth {
+     flex-direction: column;
+    }
+  }

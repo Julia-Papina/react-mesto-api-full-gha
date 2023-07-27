@@ -1,0 +1,10 @@
+.popup__error {
+    display: flex;
+    align-items: center;
+    color: #ff0000;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12px;
+    min-height: 24px;
+    visibility: hidden;
+  }

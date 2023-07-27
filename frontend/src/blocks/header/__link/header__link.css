@@ -1,0 +1,35 @@
+.header__link {
+    color: #fff;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: right;
+    text-decoration: none;
+    padding-bottom: 46px;
+    
+}
+
+.header__link:hover {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+
+  
+  @media (max-width: 950px) {
+    .header__link {
+     margin-right: 34px;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .header__link {
+      font-size: 15px;
+      line-height: 20px;
+    }
+  }
+
+  @media (max-width: 381px) {
+    .header__link {
+      font-size: 14px;
+      line-height: 17px;
+    }
+  }

@@ -1,0 +1,7 @@
+.login__text {
+    font-size: 14px;
+    line-height: 17px;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}

@@ -1,0 +1,7 @@
+.cards__item {
+    width: 282px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    display: grid;
+    position: relative;
+  }

@@ -1,0 +1,11 @@
+.profile__avatar-edit {
+  width: 26px;
+  height: 26px;
+  background-image: url("../../../images/Vector2.svg");
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: var(--transition-opacity);
+}

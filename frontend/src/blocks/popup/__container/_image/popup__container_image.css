@@ -1,0 +1,12 @@
+.popup__container_image {
+    margin: 0;
+    width: auto;
+    background-color: transparent;
+    aspect-ratio: auto;
+  }
+
+  @media screen and (max-width: 424px) {
+    .popup__container_image {
+      margin: 0 40px;
+    }
+  }

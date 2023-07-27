@@ -1,0 +1,14 @@
+.cards__delete-button {
+    background-image: url(../../../images/korzina.svg);
+    width: 18px;
+    height: 19px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: var(--transition-opacity);
+}
+
+.cards__delete-button:hover {
+    opacity: 0.6;
+  }
