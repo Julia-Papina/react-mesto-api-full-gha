@@ -12,7 +12,7 @@ export const BASE_URL = "https://api.papina-pr15.nomoredomains.xyz";
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
-    // credentials: 'include',
+    credentials: 'include',
     headers: {
       "Accept": "application/json",
       "Content-Type": "application/json",
