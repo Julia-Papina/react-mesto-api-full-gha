@@ -54,8 +54,12 @@ const login = (req, res, next) => {
             }, process.env.JWT_SECRET);
             res.cookie('jwt', jwt, {
               maxAge: 360000,
-              httpOnly: true,
-              sameSite: true,
+              // httpOnly: true,
+              // sameSite: true,
+              httpOnly: false,
+              sameSite: 'none',
+              secure: true,
+
             });
             res.send(user.toJSON());
             console.log('аутентификация прошла успешно');

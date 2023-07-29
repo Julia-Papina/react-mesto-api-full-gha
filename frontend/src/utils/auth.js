@@ -40,6 +40,7 @@ export const tokenUser = (jwt) => {
     headers: {
       "Accept": "application/json",
       "Content-Type": "application/json",
+      'Access-Control-Allow-Credentials': 'true',
       //Authorization: `Bearer ${jwt}`,
     },
   }).then(checkResponse);
