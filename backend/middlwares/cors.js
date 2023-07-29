@@ -3,6 +3,8 @@ const allowedCors = [
   'http://localhost:3001',
   // 'http://papina-pr15.nomoredomains.xyz',
   'https://papina-pr15.nomoredomains.xyz',
+  'https://api.papina-pr15.nomoredomains.xyz/sign-in',
+  'https://api.papina-pr15.nomoredomains.xyz',
 ];
 
 const cors = (req, res, next) => {
