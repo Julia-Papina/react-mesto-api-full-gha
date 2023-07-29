@@ -14,12 +14,14 @@ class Api {
 
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
+      credentials: 'include',
       headers: this._headers,
     }).then(this._checkResponse);
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
+      credentials: 'include',
       headers: this._headers,
     }).then(this._checkResponse);
   }
@@ -27,6 +29,7 @@ class Api {
   editProfile(data) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
@@ -38,6 +41,7 @@ class Api {
   addCard(inputsValues) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: inputsValues.name,
@@ -49,6 +53,7 @@ class Api {
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
+      credentials: 'include',
       headers: this._headers,
     }).then(this._checkResponse);
   }
@@ -56,6 +61,7 @@ class Api {
   deleteLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
+      credentials: 'include',
       headers: this._headers,
     }).then(this._checkResponse);
   }
@@ -63,6 +69,7 @@ class Api {
   addLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "PUT",
+      credentials: 'include',
       headers: this._headers,
     }).then(this._checkResponse);
   }
@@ -70,6 +77,7 @@ class Api {
   changeUserAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         avatar: data.avatar,
@@ -79,9 +87,11 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-64",
+  //baseUrl: "https://mesto.nomoreparties.co/v1/cohort-64",
+  //baseUrl: "http://localhost:3000",
+  baseUrl: "https://api.papina-pr15.nomoredomains.xyz",
   headers: {
-    authorization: "1abf7f9d-c23d-4867-8bbb-e68949373c5f",
+    //authorization: "1abf7f9d-c23d-4867-8bbb-e68949373c5f",
     "Content-Type": "application/json",
   },
 });

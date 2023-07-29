@@ -133,6 +133,15 @@ const updateUserAvatar = (req, res, next) => {
   updateUserFields(req, res, next, { avatar });
 };
 
+const logout = (req, res) => {
+  res.clearCookie('jwt', {
+    maxAge: 24 * 3600000,
+    sameSite: true,
+    httpOnly: true,
+  });
+  res.send({ message: 'logout' });
+};
+
 module.exports = {
   getUsers,
   getUserById,
@@ -141,4 +150,5 @@ module.exports = {
   updateUser,
   updateUserAvatar,
   login,
+  logout,
 };

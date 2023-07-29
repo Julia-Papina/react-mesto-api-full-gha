@@ -11,9 +11,10 @@ function Card({
 }) {
   const currentUser = useContext(CurrentUserContext);
   // Определяем, являемся ли мы владельцем текущей карточки
-  const isOwner = card.owner._id === currentUser._id;
+  const isOwner = card.owner === currentUser._id;
+
   // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
-  const isLiked = card.likes.some((i) => i._id === currentUser._id);
+  const isLiked = card.likes.some((id) => id === currentUser._id);
 
   // переменная для кнопки лайка
   const cardLikeButtonClassName = `button cards__like ${

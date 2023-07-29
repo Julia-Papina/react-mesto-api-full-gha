@@ -57,7 +57,8 @@ function App() {
     auth
       .login(email, password)
       .then((res) => {
-        localStorage.setItem("jwt", res.token);
+        // localStorage.setItem("jwt", res.token);
+        localStorage.setItem("userId", res._id);
         setIsLoggedIn(true);
         setEmailName(email);
         navigate("/");
@@ -70,14 +71,15 @@ function App() {
   }
 
   useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
+    // const jwt = localStorage.getItem("jwt");
+    const jwt = localStorage.getItem("userId");
     if (jwt) {
       auth
         .tokenUser(jwt)
         .then((res) => {
           if (res) {
             setIsLoggedIn(true);
-            setEmailName(res.data.email);
+            setEmailName(res.email);
           }
         })
         .catch((err) => {
@@ -139,7 +141,8 @@ function App() {
   // Функция при клике на лайк
   function handleCardLike(card) {
     // проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    // const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((id) => id === currentUser._id);
     if (isLiked) {
       api
         .deleteLike(card._id)
@@ -211,7 +214,8 @@ function App() {
     setIsLoggedIn(false);
     setEmailName(null);
     navigate("/sign-in");
-    localStorage.removeItem("jwt");
+    // localStorage.removeItem("jwt");
+    localStorage.removeItem("userId");
   }
 
   return (
