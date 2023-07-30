@@ -54,9 +54,9 @@ const login = (req, res, next) => {
             }, process.env.JWT_SECRET);
             res.cookie('jwt', jwt, {
               maxAge: 360000,
-              // httpOnly: true,
+              httpOnly: true,
               // sameSite: true,
-              httpOnly: false,
+              // httpOnly: false,
               sameSite: 'none',
               secure: true,
 
