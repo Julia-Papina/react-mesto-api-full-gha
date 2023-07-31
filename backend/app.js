@@ -3,21 +3,32 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, DB_URL } = process.env;
 const app = express();
 const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 const cors = require('./middlwares/cors');
 const router = require('./routes/index');
 const error = require('./middlwares/error');
 const { requestLogger, errorLogger } = require('./middlwares/logger');
 
-mongoose.connect('mongodb://127.0.0.1:27017/mestodb')
+mongoose.connect(DB_URL)
   .then(() => console.log('Подключено к MongoDB'))
   .catch((err) => {
     console.error('Ошибка подключения к MongoDB:', err);
   });
 
 app.use(express.json());
+
+app.use(helmet());
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+});
+
+app.use(limiter);
 
 app.use(cookieParser());
 app.use(cors);

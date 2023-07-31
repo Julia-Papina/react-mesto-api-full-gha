@@ -6,7 +6,6 @@ function checkResponse(res) {
   }
 }
 
-//export const BASE_URL = "https://auth.nomoreparties.co";
  //export const BASE_URL = "http://localhost:3000";
 export const BASE_URL = "https://api.papina-pr15.nomoredomains.xyz";
 export const register = (email, password) => {
@@ -41,7 +40,6 @@ export const tokenUser = (jwt) => {
       "Accept": "application/json",
       "Content-Type": "application/json",
       'Access-Control-Allow-Credentials': 'true',
-      //Authorization: `Bearer ${jwt}`,
     },
   }).then(checkResponse);
 };
