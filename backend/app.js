@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 
-const { PORT = 3000, DB_URL } = process.env;
+const { PORT, DB_URL, NODE_ENV } = process.env;
 const app = express();
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
@@ -13,7 +13,12 @@ const router = require('./routes/index');
 const error = require('./middlwares/error');
 const { requestLogger, errorLogger } = require('./middlwares/logger');
 
-mongoose.connect(DB_URL)
+const DEV_DB_HOST = require('./utils/config');
+
+mongoose.connect(
+  NODE_ENV === 'production' && DB_URL
+    ? DB_URL : DEV_DB_HOST,
+)
   .then(() => console.log('Подключено к MongoDB'))
   .catch((err) => {
     console.error('Ошибка подключения к MongoDB:', err);
@@ -28,12 +33,13 @@ const limiter = rateLimit({
   max: 100,
 });
 
-app.use(limiter);
-
 app.use(cookieParser());
+
 app.use(cors);
 
 app.use(requestLogger);
+
+app.use(limiter);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -46,6 +52,7 @@ app.use(router);
 app.use(errorLogger);
 
 app.use(errors());
+
 app.use(error);
 
 app.listen(PORT, () => {

@@ -7,6 +7,8 @@ const BadRequestError = require('../errors/BadRequestError');
 const ConflictError = require('../errors/ConflictError');
 const UnauthorizedError = require('../errors/UnauthorizedError');
 
+const { JWT_SECRET, NODE_ENV } = process.env;
+
 const OK = 200;
 const CREATED = 201;
 
@@ -32,15 +34,12 @@ const createUser = (req, res, next) => {
             next(err);
           }
         });
-    });
+    })
+    .catch((err) => next(err));
 };
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
-
-  if (!email || !password) {
-    throw new UnauthorizedError({ message: 'Необходима авторизация' });
-  }
 
   User.findOne({ email })
     .select('+password')
@@ -51,7 +50,7 @@ const login = (req, res, next) => {
           if (isValidUser) {
             const jwt = jsonWebToken.sign({
               _id: user._id,
-            }, process.env.JWT_SECRET);
+            }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret');
             res.cookie('jwt', jwt, {
               maxAge: 360000,
               httpOnly: true,
@@ -64,9 +63,10 @@ const login = (req, res, next) => {
             res.send(user.toJSON());
             console.log('аутентификация прошла успешно');
           } else {
-            next(new BadRequestError('Неправильные почта или пароль'));
+            next(new UnauthorizedError('Неправильная почта или пароль, требуется авторизация'));
           }
-        });
+        })
+        .catch(next);
     })
     .catch((err) => next(err));
 };
