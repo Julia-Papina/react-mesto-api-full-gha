@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 
-const { PORT, DB_URL, NODE_ENV } = process.env;
+const { PORT = 3000, DB_URL, NODE_ENV } = process.env;
 const app = express();
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
@@ -13,7 +13,7 @@ const router = require('./routes/index');
 const error = require('./middlwares/error');
 const { requestLogger, errorLogger } = require('./middlwares/logger');
 
-const DEV_DB_HOST = require('./utils/config');
+const { DEV_DB_HOST } = require('./utils/config');
 
 mongoose.connect(
   NODE_ENV === 'production' && DB_URL
